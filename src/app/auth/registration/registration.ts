@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth';
+import { AuthService } from '../../services/popups';
 import { Country, CountryService } from '../../services/country';
-import { ClientService } from '../../services/client';
+import { ClientService } from '../../services/auth';
 
 @Component({
   selector: 'app-registration',

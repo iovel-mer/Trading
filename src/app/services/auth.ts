@@ -1,31 +1,38 @@
-
-
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  private showLoginModalSubject = new BehaviorSubject<boolean>(false);
-  private showRegisterModalSubject = new BehaviorSubject<boolean>(false);
+export class ClientService {
+  private apiUrl = 'https://api.salesvault.vc/identity/api/clients/create-client-via-web';
+   private loginUrl = 'https://api.salesvault.vc/identity/api/auth/login-for-direct';
 
-  showLoginModal$ = this.showLoginModalSubject.asObservable();
-  showRegisterModal$ = this.showRegisterModalSubject.asObservable();
+  constructor(private http: HttpClient) {}
 
-  openLogin(): void {
-    this.showLoginModalSubject.next(true);
-    this.showRegisterModalSubject.next(false);
+  createClient(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
   }
 
-  openRegister(): void {
-    console.log('Opening register modal');
-    this.showRegisterModalSubject.next(true);
-    this.showLoginModalSubject.next(false);
+  login(payload: {
+    emailOrUsername: string;
+    password: string;
+    twoFactorCode:null,
+    rememberMe:null
+  }): Observable<any> {
+    return this.http.post(this.loginUrl, payload);
   }
 
-  closeModals(): void {
-    this.showLoginModalSubject.next(false);
-    this.showRegisterModalSubject.next(false);
-  }
+sendTokenToTrackingAPI(token: string):void {
+  window.location.href = `https://salesvault.vc/auth/confirm/${token}`;
+
+  // return this.http.post(url, {}, {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`
+  //   }
+  // });
+}
+
+
 }

@@ -6,7 +6,7 @@ import { Footer } from "./components/footer/footer";
 import { LoginComponent } from "./auth/login/login";
 import { RegistrationComponent } from "./auth/registration/registration";
 import { CommonModule } from '@angular/common';
-import { AuthService } from './services/auth';
+import { AuthService } from './services/popups';
 
 
 @Component({

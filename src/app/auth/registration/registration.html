@@ -1,8 +1,12 @@
+
 <div
-  class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-center items-start min-h-full pt-10 pb-10 overflow-y-auto"
+  class="fixed mt-10 inset-0 z-50 bg-black/50 backdrop-blur-sm flex justify-center items-start min-h-full pt-10 pb-10 overflow-y-auto"
+  (click)="close()"
 >
+  
   <div
     class="bg-[#1f2235] p-8 rounded-xl w-full max-w-3xl shadow-xl text-white relative"
+    (click)="$event.stopPropagation()"
   >
     <button
       (click)="close()"
@@ -69,25 +73,19 @@
         </div>
       </div>
 
-      
-
       <!-- Dial Code -->
       <div class="relative">
         <label class="block text-sm text-gray-300 mb-1">Dial Code</label>
         <select
-        
           formControlName="dialCode"
-          class="appearance-none w-full  p-3 rounded-md bg-[#1f2235] border-2 border-amber-100 text-white focus:outline-none"
+          class="appearance-none w-full p-3 rounded-md bg-[#1f2235] border-2 border-amber-100 text-white focus:outline-none"
         >
-          
           <option [ngValue]="null" disabled>Select code</option>
           <option *ngFor="let c of countries" [value]="c.dialCode">
             {{ c.dialCode }} ({{ c.name }})
           </option>
         </select>
         <div class="pointer-events-none absolute right-3 top-[5px] -translate-y-[-30px] text-gray-400">▼</div>
-
-
         <div *ngIf="form.get('dialCode')?.invalid && form.get('dialCode')?.touched" class="text-sm text-red-400 mt-1">
           Dial code is required.
         </div>
@@ -107,15 +105,12 @@
         </div>
       </div>
 
-      
-
       <!-- Country -->
       <div class="relative">
         <label class="block text-sm text-gray-300 mb-1">Country</label>
         <select
-        
           formControlName="country"
-          class="appearance-none w-full p-3 rounded-md  bg-[#1f2235] border-2 border-amber-100 text-white focus:outline-none"
+          class="appearance-none w-full p-3 rounded-md bg-[#1f2235] border-2 border-amber-100 text-white focus:outline-none"
         >
           <option [ngValue]="null" disabled>Select country</option>
           <option *ngFor="let c of countries" [value]="c.name">{{ c.name }}</option>
@@ -153,7 +148,8 @@
           Password must be at least 6 characters.
         </div>
       </div>
-      <!-- Password -->
+
+      <!-- Confirm Password -->
       <div>
         <label class="block text-sm text-gray-300 mb-1">Confirm Password</label>
         <input
@@ -177,9 +173,9 @@
         </button>
       </div>
     </form>
-    <div *ngIf="successMessage" class="mt-4 text-green-400 text-sm text-center">
-  {{ successMessage }}
-</div>
 
+    <div *ngIf="successMessage" class="mt-4 text-green-400 text-sm text-center">
+      {{ successMessage }}
+    </div>
   </div>
 </div>

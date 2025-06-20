@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth';
-import { ClientService } from '../../services/client';
+import { AuthService } from '../../services/popups';
+import { ClientService } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
